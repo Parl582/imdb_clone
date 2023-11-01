@@ -23,19 +23,17 @@ const Allmovies = async ({
   if (!res) {
     return <div>No Data</div>;
   }
+
   const data: dataTypes = await res.json();
   const totalItem = data.totalResults;
   const ItemPerPage = data?.Search?.length;
 
+  console.log(data);
   return (
     <div className="w-full px-4 md:px-11 flex flex-wrap">
       {data?.Search?.map((elm) => (
-        <div className="w-1/2 md:w-1/4 lg:w-1/5 p-2" key={elm.imdbID}>
+        <div className="w-1/3 md:w-1/5 lg:w-1/6 p-2 " key={elm.imdbID}>
           <MovieCard {...elm} />
-          <h1 className="text-white w-full my-1 line-clamp-2 font-bold">
-            {" "}
-            {elm.Title}{" "}
-          </h1>
         </div>
       ))}
       <Pagination
