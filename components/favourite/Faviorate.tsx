@@ -4,7 +4,7 @@ import MovieCard from "@/components/movie-container/MovieCard";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 
-const Faviorate = () => {
+const Favorite = () => {
   const favoriteMovies = useSelector(
     (state: RootState) => state.favorite.value
   );
@@ -21,4 +21,4 @@ const Faviorate = () => {
   );
 };
 
-export default Faviorate;
+export default Favorite;
