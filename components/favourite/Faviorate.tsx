@@ -15,7 +15,7 @@ const Favorite = () => {
   //     const renderData =
   //       text.length > 30 ? (
   //         <p>
-  //           {text.slice(0, showMore)}{" "}
+  //           {text.slice(0, showMore)}
   //           <span onClick={() => setShowMore(text.length)}>..show more</span>
   //         </p>
   //       ) : (
@@ -38,19 +38,18 @@ const Favorite = () => {
             <div className="text-white ">
               <h2 className="font-semibold pt-3 text-yellow-400">Comments :</h2>
               <p className="text-zinc-300 text-xs">
-                {" "}
-                {showMore ? elm?.comments?.slice(0, 30) : elm?.comments}
+                {showMore ? elm?.comments?.slice(0, 60) : elm?.comments}
+                {elm.comments.length > 30 ? (
+                  <span
+                    className="text-xs cursor-pointer text-blue-500 px-2"
+                    onClick={() => setShowMore((prev) => !prev)}
+                  >
+                    {showMore ? "...read more" : "hide"}
+                  </span>
+                ) : (
+                  ""
+                )}
               </p>
-              {elm.comments.length > 30 ? (
-                <span
-                  className="text-xs cursor-pointer text-blue-500 px-2"
-                  onClick={() => setShowMore((prev) => !prev)}
-                >
-                  {showMore ? "...read more" : "Less"}{" "}
-                </span>
-              ) : (
-                ""
-              )}
             </div>
           )}
         </div>

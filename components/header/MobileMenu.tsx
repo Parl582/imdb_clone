@@ -7,12 +7,11 @@ type props = {
 };
 
 const MobileMenu = ({ mobileOpen, handleMobileOpen }: props) => {
-  console.log(mobileOpen);
   return (
     <div
       className={`w-full h-screen  fixed ${
         mobileOpen ? "left-0 top-0" : "-left-full"
-      } duration-300`}
+      } duration-300 z-[999]`}
       onClick={handleMobileOpen}
     >
       <div
