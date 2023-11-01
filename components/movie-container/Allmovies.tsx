@@ -34,7 +34,6 @@ const Allmovies = async ({
           <MovieCard {...elm} />
         </div>
       ))}
-
       <Pagination
         total={totalItem}
         ItemPerPage={ItemPerPage}

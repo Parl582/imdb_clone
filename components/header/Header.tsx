@@ -62,7 +62,10 @@ const Header = () => {
           <div className="font-bold text-white cursor-pointer ">
             IMDb<span className="text-sky-400">Pro</span>
           </div>
-          <Link href={"/"} className="flex items-center text-white space-x-1">
+          <Link
+            href={"/favorite"}
+            className="flex items-center text-white space-x-1"
+          >
             <BookmarkPlus size={20} color="white" />{" "}
             <span className="text-sm">Watchlist </span>
           </Link>
