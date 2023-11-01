@@ -15,14 +15,14 @@ export const favoriteSlice = createSlice({
   initialState,
   reducers: {
     addToFavList: (state, action: PayloadAction<FavType>) => {
-      //   state.value.push(action.payload);
       state.value.push(action.payload);
-      console.log(action.payload);
+    },
+    RemoveFromFavList: (state, action) => {
+      state.value = state.value.filter((elm) => elm.imdbID !== action.payload);
     },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { addToFavList } = favoriteSlice.actions;
+export const { addToFavList, RemoveFromFavList } = favoriteSlice.actions;
 
 export default favoriteSlice.reducer;

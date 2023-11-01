@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { BookmarkCheck } from "lucide-react";
+import { BookmarkCheck, Trash2 } from "lucide-react";
 import { SearchData } from "@/types";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavList } from "../redux/favSlice";
-import { RootState } from "../redux/store";
+import { RemoveFromFavList, addToFavList } from "../redux/favSlice";
+
 import CommentModal from "./CommentModal";
 
 interface Props extends SearchData {
@@ -14,10 +14,9 @@ interface Props extends SearchData {
 
 const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
   const dispatch = useDispatch();
-  const getFav = useSelector((state: RootState) => state?.favorite.value);
   const [comment, setComment] = useState("");
 
-  const addFav = () => {
+  const handleAddFav = () => {
     dispatch(addToFavList({ Title, Year, imdbID, Poster, comments: comment }));
   };
 
@@ -25,21 +24,24 @@ const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
     setComment(e.target.value);
   };
 
-  // console.log(comment);
-
-  console.log(getFav);
+  const handleFavRemove = () => {
+    dispatch(RemoveFromFavList(imdbID));
+  };
 
   return (
     <>
       <div className="w-full xl:h-96 h-64 border cursor-pointer relative">
-        {/* <BookmarkCheck
-          className="absolute top-1 left-0 text-xl text-white bg-transparent z-50"
-          onClick={addFav}
-        /> */}
         {deleteBtn ? (
-          " "
+          <Trash2
+            onClick={handleFavRemove}
+            className="absolute top-1 left-0 text-xl text-red-800 bg-transparent z-50"
+            size={30}
+          />
         ) : (
-          <CommentModal addFav={addFav} handleChange={handleChange} />
+          <CommentModal
+            handleAddFav={handleAddFav}
+            handleChange={handleChange}
+          />
         )}
 
         {Poster && Poster !== "N/A" ? (

@@ -13,11 +13,11 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 
 type props = {
-  addFav: () => void;
+  handleAddFav: () => void;
   handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-const CommentModal = ({ addFav, handleChange }: props) => {
+const CommentModal = ({ handleAddFav, handleChange }: props) => {
   return (
     <Dialog>
       <DialogTrigger>
@@ -32,7 +32,7 @@ const CommentModal = ({ addFav, handleChange }: props) => {
 
         <DialogClose asChild>
           {/* <Button onClick={editTask}>Save changes</Button>7 */}
-          <Button onClick={addFav}> Add to Favorite </Button>
+          <Button onClick={handleAddFav}> Add to Favorite </Button>
         </DialogClose>
       </DialogContent>
     </Dialog>
