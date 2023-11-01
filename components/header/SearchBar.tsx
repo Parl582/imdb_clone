@@ -26,7 +26,7 @@ const SearchBar = () => {
     setText(e.target.value);
   };
   const initialRender = useRef(true);
-  console.log(initialRender.current);
+
   useEffect(() => {
     if (initialRender.current) {
       initialRender.current = false;

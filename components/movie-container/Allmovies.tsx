@@ -35,7 +35,12 @@ const Allmovies = async ({
         </div>
       ))}
 
-      <Pagination total={totalItem} ItemPerPage={ItemPerPage} search={search} />
+      <Pagination
+        total={totalItem}
+        ItemPerPage={ItemPerPage}
+        search={search}
+        page={page}
+      />
     </div>
   );
 };
