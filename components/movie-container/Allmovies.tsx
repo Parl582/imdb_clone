@@ -32,6 +32,10 @@ const Allmovies = async ({
       {data?.Search?.map((elm) => (
         <div className="w-1/2 md:w-1/4 lg:w-1/5 p-2" key={elm.imdbID}>
           <MovieCard {...elm} />
+          <h1 className="text-white w-full my-1 line-clamp-2 font-bold">
+            {" "}
+            {elm.Title}{" "}
+          </h1>
         </div>
       ))}
       <Pagination

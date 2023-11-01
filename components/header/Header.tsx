@@ -67,7 +67,7 @@ const Header = () => {
             className="flex items-center text-white space-x-1"
           >
             <BookmarkPlus size={20} color="white" />{" "}
-            <span className="text-sm">Watchlist </span>
+            <span className="text-sm">Favorite </span>
           </Link>
           <Link href={"/"} className="flex items-center text-white space-x-1">
             <UserCircle2 size={20} color="white" />{" "}
