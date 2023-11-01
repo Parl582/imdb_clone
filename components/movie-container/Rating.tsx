@@ -13,6 +13,7 @@ const Rating = ({ handleRating, rating }: props) => {
         let current = i + 1;
         return (
           <Star
+            key={i}
             values={rating}
             onClick={() => handleRating(current.toString())}
             className={`cursor-pointer ${
