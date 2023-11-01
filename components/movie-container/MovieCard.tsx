@@ -16,13 +16,22 @@ interface Props extends SearchData {
 const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
-  const [ratingValue, setRatingValue] = useState(0);
-  const handleRating = (rate: number) => {
+  const [ratingValue, setRatingValue] = useState("0");
+  const handleRating = (rate: string) => {
     setRatingValue(rate);
   };
 
   const handleAddFav = () => {
-    dispatch(addToFavList({ Title, Year, imdbID, Poster, comments: comment }));
+    dispatch(
+      addToFavList({
+        Title,
+        Year,
+        imdbID,
+        Poster,
+        comments: comment,
+        rating: ratingValue,
+      })
+    );
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -64,16 +73,20 @@ const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
         {/* button  */}
 
         {deleteBtn ? (
-          <Trash2
+          <Button
+            variant={"imdb"}
+            className="flex gap-2 items-center w-full text-[#4c7fc0] font-semibold"
             onClick={handleFavRemove}
-            className="absolute top-1 left-0 text-xl text-red-800 bg-transparent z-50"
-            size={30}
-          />
+          >
+            <Trash2 className=" text-xl  bg-transparent z-50" />
+            Remove
+          </Button>
         ) : (
           <CommentModal
             handleAddFav={handleAddFav}
             handleChange={handleChange}
             handleRating={handleRating}
+            rating={ratingValue}
           />
         )}
       </div>

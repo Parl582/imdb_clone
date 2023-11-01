@@ -16,10 +16,16 @@ import Rating from "./Rating";
 type props = {
   handleAddFav: () => void;
   handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  handleRating: (rate: number) => void;
+  handleRating: (rate: string) => void;
+  rating: string;
 };
 
-const CommentModal = ({ handleAddFav, handleChange, handleRating }: props) => {
+const CommentModal = ({
+  handleAddFav,
+  handleChange,
+  handleRating,
+  rating,
+}: props) => {
   const [openRating, setOpenRating] = useState(false);
 
   return (
@@ -45,7 +51,7 @@ const CommentModal = ({ handleAddFav, handleChange, handleRating }: props) => {
         </button>
         {/* <Rating onClick={handleRating}
          */}
-        <Rating />
+        <Rating rating={rating} handleRating={handleRating} />
 
         <DialogClose asChild>
           {/* Button */}

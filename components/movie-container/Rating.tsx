@@ -1,8 +1,12 @@
 import { Star } from "lucide-react";
 import React, { useState } from "react";
 
-const Rating = () => {
-  const [rating, setRating] = useState<string | undefined>();
+type props = {
+  handleRating: (rating: string) => void;
+  rating: string;
+};
+
+const Rating = ({ handleRating, rating }: props) => {
   return (
     <div className="flex gap-1">
       {[...Array(5)].map((elm, i) => {
@@ -10,7 +14,7 @@ const Rating = () => {
         return (
           <Star
             values={rating}
-            onClick={() => setRating(current.toString())}
+            onClick={() => handleRating(current.toString())}
             className={`cursor-pointer ${
               current <= Number(rating) ? "text-yellow-400" : ""
             } `}

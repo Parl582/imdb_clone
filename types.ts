@@ -8,8 +8,7 @@ export interface SearchData {
 
 export interface FavType extends SearchData {
   comments?: string;
-  rating?: number;
+  rating?: string;
 }
-
 
 // Title, Year, imdbID, Poster

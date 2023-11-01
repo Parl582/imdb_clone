@@ -28,9 +28,8 @@ const Allmovies = async ({
   const totalItem = data.totalResults;
   const ItemPerPage = data?.Search?.length;
 
-  console.log(data);
   return (
-    <div className="w-full px-4 md:px-11 flex flex-wrap">
+    <div className="w-full px-2 md:px-11 lg:px-20 py-7 flex flex-wrap">
       {data?.Search?.map((elm) => (
         <div className="w-1/3 md:w-1/5 lg:w-1/6 p-2 " key={elm.imdbID}>
           <MovieCard {...elm} />
