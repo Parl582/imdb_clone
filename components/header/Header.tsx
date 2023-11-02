@@ -26,7 +26,7 @@ const Header = () => {
     <>
       <div
         className="w-full h-[60px]
-    shadow-md px-4 md:px-11 flex items-center justify-between font-bold bg-[#2A2A2C]
+    shadow-md px-4 md:px-11 lg:px-20 flex items-center justify-between font-bold bg-[#121212]
     gap-5 top-0 sticky z-[99]
     "
       >

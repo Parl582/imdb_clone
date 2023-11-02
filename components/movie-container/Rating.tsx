@@ -13,6 +13,8 @@ const Rating = ({ handleRating, rating }: props) => {
         let current = i + 1;
         return (
           <Star
+            size={20}
+            strokeWidth={3}
             key={i}
             values={rating}
             onClick={() => handleRating(current.toString())}

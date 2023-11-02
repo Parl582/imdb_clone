@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import {
   Dialog,
@@ -18,12 +19,14 @@ type props = {
   handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   handleRating: (rate: string) => void;
   rating: string;
+  color?: boolean;
 };
 
 const CommentModal = ({
   handleAddFav,
   handleChange,
   handleRating,
+  color,
   rating,
 }: props) => {
   const [openRating, setOpenRating] = useState(false);
@@ -32,19 +35,24 @@ const CommentModal = ({
     <Dialog>
       <DialogTrigger>
         <Button
-          variant={"imdb"}
-          className="flex gap-2 items-center w-full text-[#4c7fc0] font-semibold"
+          variant={`${color ? "yellowV" : "imdb"}`}
+          className={`flex md:gap-2 gap-1 items-center  w-full ${
+            color ? "text-black hover:text-white" : "text-[#4c7fc0]"
+          }  md:text-base text-xs font-semibold`}
         >
-          <BookmarkCheck className=" text-xl  bg-transparent z-50" />
+          <BookmarkCheck className=" text-xl md:block hidden bg-transparent z-50" />
           Add to favorite
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="bg-headerbg text-white">
         <DialogHeader>
           <DialogTitle>Do you want to add any comments </DialogTitle>
         </DialogHeader>
 
-        <Textarea className="outline-none rounded-sm" onChange={handleChange} />
+        <Textarea
+          className="outline-none rounded-sm bg-black/30"
+          onChange={handleChange}
+        />
 
         <button className="flex gap-1 items-center text-sm text-sky-400">
           <Star size={14} /> <span>Rate </span>{" "}
@@ -55,7 +63,13 @@ const CommentModal = ({
 
         <DialogClose asChild>
           {/* Button */}
-          <Button onClick={handleAddFav}> Add to Favorite </Button>
+          <Button
+            onClick={handleAddFav}
+            className="bg-yellow-400 text-black hover:text-white "
+          >
+            {" "}
+            Add to Favorite{" "}
+          </Button>
         </DialogClose>
       </DialogContent>
     </Dialog>

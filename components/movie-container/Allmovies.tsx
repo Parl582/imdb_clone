@@ -18,7 +18,7 @@ const Allmovies = async ({
   const search = searchParams?.search ?? "Batman";
 
   const res = await fetch(
-    `https://www.omdbapi.com/?apikey=3bfe041&s=${search}&page=${page}`
+    `https://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=${search}&page=${page}`
   );
   if (!res) {
     return <div>No Data</div>;
@@ -31,7 +31,7 @@ const Allmovies = async ({
   return (
     <div className="w-full px-2 md:px-11 lg:px-20 py-7 flex flex-wrap">
       {data?.Search?.map((elm) => (
-        <div className="w-1/3 md:w-1/5 lg:w-1/6 p-2 " key={elm.imdbID}>
+        <div className="w-1/3 md:w-1/5 lg:w-1/6 md:p-3 p-1 " key={elm.imdbID}>
           <MovieCard {...elm} />
         </div>
       ))}

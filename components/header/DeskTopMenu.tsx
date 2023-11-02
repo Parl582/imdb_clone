@@ -17,9 +17,9 @@ const DesktopMenu = ({ open, handleOpen }: props) => {
   };
   return (
     <div
-      className={`w-full ${
-        open ? "h-screen visible opacity-100 " : "h-0 invisible opacity-0"
-      }   fixed bg-[#2f2f2f] inset-0 p-16 overflow-hidden duration-200 transition-all z-[999]`}
+      className={`w-full h-screen  ${
+        open ? "  top-0 " : "-top-full "
+      }   fixed bg-[#2f2f2f] inset-0 p-16 overflow-hidden duration-500 transition-all z-[999]`}
     >
       <div className="w-full md:flex hidden items-center justify-center">
         <div className="w-[75%] flex  justify-between text-white items-center">

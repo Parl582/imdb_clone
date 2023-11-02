@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { BookmarkCheck, Trash2 } from "lucide-react";
+import { BookmarkCheck, Link, Trash2 } from "lucide-react";
 import { SearchData } from "@/types";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,15 +8,17 @@ import { RemoveFromFavList, addToFavList } from "../redux/favSlice";
 
 import CommentModal from "./CommentModal";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 interface Props extends SearchData {
   deleteBtn?: boolean;
 }
 
 const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
+  const Router = useRouter();
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
-  const [ratingValue, setRatingValue] = useState("0");
+  const [ratingValue, setRatingValue] = useState("");
   const handleRating = (rate: string) => {
     setRatingValue(rate);
   };
@@ -44,7 +46,10 @@ const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
 
   return (
     <div className="bg-headerbg w-full rounded-b-[5px]  overflow-hidden">
-      <div className="w-full lg:h-80 h-60  cursor-pointer relative overflow-hidden">
+      <div
+        className="w-full lg:h-72 h-52  cursor-pointer relative overflow-hidden"
+        onClick={() => Router.push(`/${imdbID}`)}
+      >
         {Poster && Poster !== "N/A" ? (
           <Image
             src={Poster}
@@ -62,11 +67,11 @@ const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
         )}
       </div>
 
-      <div className="w-full bg-headerbg px-2 py-4 h-40  flex flex-col justify-between">
+      <div className="w-full bg-headerbg md:px-2 px-1 py-4 md:h-40 h-32  flex flex-col justify-between">
         <span className=" w-full m text-xs text-slate-400 md:text-sm">
           {Year}
         </span>
-        <h1 className="text-white w-full  line-clamp-2 text-sm md:text-base">
+        <h1 className="text-white w-full  line-clamp-2 text-xs md:text-base">
           {Title}
         </h1>
 
@@ -75,7 +80,7 @@ const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
         {deleteBtn ? (
           <Button
             variant={"imdb"}
-            className="flex gap-2 items-center w-full text-[#4c7fc0] font-semibold"
+            className="flex gap-2 items-center w-full text-[#4c7fc0] font-semibold text-red-500"
             onClick={handleFavRemove}
           >
             <Trash2 className=" text-xl  bg-transparent z-50" />
