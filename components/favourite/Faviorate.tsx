@@ -6,6 +6,7 @@ import { RootState } from "../redux/store";
 import Rating from "../movie-container/Rating";
 
 const Favorite = () => {
+
   const [showMore, setShowMore] = useState(true);
   const handleRating = () => {};
   const favoriteMovies = useSelector(
@@ -15,9 +16,7 @@ const Favorite = () => {
   if (favoriteMovies.length === 0) {
     return (
       <div className="flex w-full items-center justify-center h-[50vh]">
-        <h1 className="text-2xl lg:text-3xl text-zinc-600">
-          No favorites yet
-        </h1>
+        <h1 className="text-2xl lg:text-3xl text-zinc-600">No favorites yet</h1>
       </div>
     );
   }
@@ -25,7 +24,7 @@ const Favorite = () => {
   return (
     <div className="w-full flex flex-wrap px-2 lg:px-20 md:px-11 py-7">
       {favoriteMovies?.map((elm) => (
-        <div className="w-1/2 md:w-1/4 lg:w-1/6 p-2" key={elm.imdbID}>
+        <div className="w-1/3 md:w-1/4 lg:w-1/6 p-2" key={elm.imdbID}>
           <MovieCard deleteBtn={true} {...elm} />
           {elm.rating && (
             <div className="text-blue-300 flex text-sm items-center gap-2">
