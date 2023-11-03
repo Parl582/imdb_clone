@@ -33,6 +33,7 @@ const Pagination = ({ total, ItemPerPage, search, page }: Props) => {
               pathname: "/",
               query: { ...(search ? { search } : {}), page: Number(page) - 1 },
             }}
+            scroll={false}
           >
             Prev
           </Link>
@@ -62,6 +63,7 @@ const Pagination = ({ total, ItemPerPage, search, page }: Props) => {
               pathname: "/",
               query: { ...(search ? { search } : {}), page: Number(page) + 1 },
             }}
+            scroll={false}
           >
             Next
           </Link>

@@ -29,7 +29,7 @@ const CommentModal = ({
   color,
   rating,
 }: props) => {
-  const [openRating, setOpenRating] = useState(false);
+  // const [openRating, setOpenRating] = useState(false);
 
   return (
     <Dialog>
