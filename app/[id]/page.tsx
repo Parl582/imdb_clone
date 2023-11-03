@@ -1,6 +1,18 @@
 import MovieDetails from "@/components/movie-container/MovieDetails";
 import { MDetailsType } from "@/types";
+import { Metadata } from "next";
 import React from "react";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  return {
+    title: `IMDb | ${params.id}`,
+    description: "this is user favorite Movie list Page",
+  };
+}
 
 const page = async ({ params }: { params: { id: string } }) => {
   const res = await fetch(
