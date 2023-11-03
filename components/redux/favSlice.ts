@@ -15,7 +15,12 @@ export const favoriteSlice = createSlice({
   initialState,
   reducers: {
     addToFavList: (state, action: PayloadAction<FavType>) => {
-      state.value.push(action.payload);
+      const itemCheck = state.value.some(
+        (elm) => elm.imdbID === action.payload.imdbID
+      );
+      if (!itemCheck) {
+        state.value.push(action.payload);
+      }
     },
     RemoveFromFavList: (state, action) => {
       state.value = state.value.filter((elm) => elm.imdbID !== action.payload);

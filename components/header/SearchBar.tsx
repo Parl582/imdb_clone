@@ -19,7 +19,7 @@ const SearchBar = () => {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
   const [text, setText] = useState(search);
-  const [debounce] = useDebounce(text, 100);
+  const [debounce] = useDebounce(text, 500);
   const [searchResult, setSearchResult] = useState<SearchData[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
