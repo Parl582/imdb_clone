@@ -1,21 +1,28 @@
 "use client";
 import { MDetailsType } from "@/types";
-import { Grip, Share2 } from "lucide-react";
+import { BookmarkCheck, Grip, Share2, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import SharedCompo from "../SharedCompo";
 import CommentModal from "../movie-container/CommentModal";
-import { useDispatch } from "react-redux";
-import { addToFavList } from "../redux/favSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RemoveFromFavList, addToFavList } from "../redux/favSlice";
+import { Button } from "../ui/button";
+import { RootState } from "../redux/store";
 
 const MovieDetails = ({ data }: { data: MDetailsType }) => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
   const [ratingValue, setRatingValue] = useState("0");
+  const favListItem = useSelector((state: RootState) => state.favorite?.value);
+
+  let alreadyInFavList = favListItem.some((elm) => elm.imdbID == data.imdbID);
+
   const handleRating = (rate: string) => {
     setRatingValue(rate);
   };
+
   const handleAddFav = () => {
     dispatch(
       addToFavList({
@@ -114,13 +121,26 @@ const MovieDetails = ({ data }: { data: MDetailsType }) => {
             </div>
           </div>
           <div className=" w-full lg:w-1/4 flex  items-center py-5 lg:justify-center">
-            <CommentModal
-              handleAddFav={handleAddFav}
-              handleRating={handleRating}
-              rating={ratingValue}
-              handleChange={handleChange}
-              color={true}
-            />
+            {alreadyInFavList ? (
+              <Button
+                variant={"imdb"}
+                className={`flex gap-2 items-center w-max px-4
+            bg-yellow-400 text-black
+                 font-semibold `}
+                onClick={() => dispatch(RemoveFromFavList(data.imdbID))}
+              >
+                <BookmarkCheck className=" text-xl md:block hidden bg-transparent z-50" />
+                In favorite
+              </Button>
+            ) : (
+              <CommentModal
+                handleAddFav={handleAddFav}
+                handleChange={handleChange}
+                handleRating={handleRating}
+                rating={ratingValue}
+                color={true}
+              />
+            )}
           </div>
         </div>
       </div>

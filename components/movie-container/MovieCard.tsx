@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { BookmarkCheck, Link, Trash2 } from "lucide-react";
+import { BookmarkCheck, BookmarkCheckIcon, Link, Trash2 } from "lucide-react";
 import { SearchData } from "@/types";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,7 +27,6 @@ const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
   const favListItem = useSelector((state: RootState) => state.favorite?.value);
 
   let alreadyInFavList = favListItem.some((elm) => elm.imdbID == imdbID);
-  console.log(alreadyInFavList);
 
   const handleAddFav = () => {
     dispatch(
@@ -97,7 +96,10 @@ const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
                 Remove
               </>
             ) : (
-              "Add to favorite"
+              <>
+                <BookmarkCheckIcon className=" text-xl md:block hidden bg-transparent z-50" />{" "}
+                In Favorite
+              </>
             )}
           </Button>
         ) : (
