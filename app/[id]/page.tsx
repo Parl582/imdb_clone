@@ -1,4 +1,4 @@
-import MovieDetails from "@/components/movie-details/MovieDetails";
+import MovieDetails from "@/components/movie-container/MovieDetails";
 import { MDetailsType } from "@/types";
 import React from "react";
 

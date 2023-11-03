@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import SharedCompo from "../SharedCompo";
-import CommentModal from "../movie-container/CommentModal";
+import CommentModal from "./CommentModal";
 import { useDispatch, useSelector } from "react-redux";
 import { RemoveFromFavList, addToFavList } from "../redux/favSlice";
 import { Button } from "../ui/button";

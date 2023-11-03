@@ -39,8 +39,8 @@ const Pagination = ({ total, ItemPerPage, search, page }: Props) => {
           </Link>
         </Button>
       )}
-      {PaginationNumber?.map((elm) => (
-        <div className="flex gap-2">
+      {PaginationNumber?.map((elm,i) => (
+        <div className="flex gap-2" key={i} >
           <Link
             href={{
               pathname: "/",
