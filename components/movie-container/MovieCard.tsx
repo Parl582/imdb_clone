@@ -9,6 +9,7 @@ import { RemoveFromFavList, addToFavList } from "../redux/favSlice";
 import CommentModal from "./CommentModal";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { RootState } from "../redux/store";
 
 interface Props extends SearchData {
   deleteBtn?: boolean;
@@ -22,6 +23,11 @@ const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
   const handleRating = (rate: string) => {
     setRatingValue(rate);
   };
+
+  const favListItem = useSelector((state: RootState) => state.favorite?.value);
+
+  let alreadyInFavList = favListItem.some((elm) => elm.imdbID == imdbID);
+  console.log(alreadyInFavList);
 
   const handleAddFav = () => {
     dispatch(
@@ -77,14 +83,22 @@ const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
 
         {/* button  */}
 
-        {deleteBtn ? (
+        {alreadyInFavList ? (
           <Button
             variant={"imdb"}
-            className="flex gap-2 items-center w-full  font-semibold text-red-500"
+            className={`flex gap-2 items-center w-full ${
+              deleteBtn ? "text-red-500" : "text-[#4c7fc0] bg-yellow-400"
+            } font-semibold `}
             onClick={handleFavRemove}
           >
-            <Trash2 className=" text-xl  bg-transparent z-50" />
-            Remove
+            {deleteBtn ? (
+              <>
+                <Trash2 className=" text-xl  bg-transparent z-50" />
+                Remove
+              </>
+            ) : (
+              "Add to favorite"
+            )}
           </Button>
         ) : (
           <CommentModal
