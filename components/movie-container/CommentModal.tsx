@@ -38,7 +38,7 @@ const CommentModal = ({
           variant={`${color ? "yellowV" : "imdb"}`}
           className={`flex md:gap-2 gap-1 items-center  w-full ${
             color ? "text-black hover:text-white" : "text-[#4c7fc0]"
-          }  md:text-base text-xs font-semibold`}
+          }  md:text-sm text-xs font-semibold`}
         >
           <BookmarkCheck className=" text-xl md:block hidden bg-transparent z-50" />
           Add to favorite

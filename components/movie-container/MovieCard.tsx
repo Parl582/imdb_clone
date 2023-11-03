@@ -45,7 +45,7 @@ const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
   };
 
   return (
-    <div className="bg-headerbg w-full rounded-b-[5px]  overflow-hidden">
+    <div className="bg-headerbg w-full rounded-b-[4px]  overflow-hidden">
       <div
         className="w-full lg:h-72 h-52  cursor-pointer relative overflow-hidden"
         onClick={() => Router.push(`/${imdbID}`)}
@@ -80,7 +80,7 @@ const MovieCard = ({ Title, Year, imdbID, Poster, deleteBtn }: Props) => {
         {deleteBtn ? (
           <Button
             variant={"imdb"}
-            className="flex gap-2 items-center w-full text-[#4c7fc0] font-semibold text-red-500"
+            className="flex gap-2 items-center w-full  font-semibold text-red-500"
             onClick={handleFavRemove}
           >
             <Trash2 className=" text-xl  bg-transparent z-50" />

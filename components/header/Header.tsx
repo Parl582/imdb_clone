@@ -53,7 +53,7 @@ const Header = () => {
             onClick={handleOpen}
           >
             <Menu />
-            <span> Menu</span>
+            <span className="text-sm"> Menu</span>
           </button>
         </div>
         <SearchBar />

@@ -12,15 +12,11 @@ import Link from "next/link";
 import React from "react";
 
 const page = async ({ params }: { params: { id: string } }) => {
-  console.log(params);
-
   const res = await fetch(
     `https://www.omdbapi.com/?i=${params.id}&apikey=3bfe041`
   );
-
   const data: MDetailsType = await res.json();
 
-  console.log(data);
   return (
     <div className="bg-black min-h-[calc(100vh-60px)] text-white p-2 lg:px-20">
       <div className="w-full flex justify-end ">

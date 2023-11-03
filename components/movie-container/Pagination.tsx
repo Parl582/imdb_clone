@@ -1,64 +1,72 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
-const Pagination = ({
-  total,
-  ItemPerPage,
-  search,
-  page,
-}: {
+type Props = {
   total: string;
   ItemPerPage: number;
   search?: string | any;
   page?: string | number | undefined;
-}) => {
+};
+
+const Pagination = ({ total, ItemPerPage, search, page }: Props) => {
+  const Router = useRouter();
   const totalPage = Math.ceil(Number(total) / ItemPerPage);
-  const PaginationNumber = [];
+  const PaginationNumber: number[] = [];
 
   if (total) {
-    for (let i = Number(page) - 3; i <= Number(page) + 1; i++) {
-      if (i >= 1) {
-        if (i <= totalPage) {
-          PaginationNumber.push(i);
-        }
-      }
+    for (let i = Number(page) - 3; i <= Number(page) + 2; i++) {
+      if (i < 1) continue;
+      if (i > totalPage) break;
+      PaginationNumber.push(i);
     }
   }
 
   return (
-    <div className="w-full flex m-auto  text-white  my-3 justify-end">
-      {PaginationNumber.map((elm) => (
-        <>
+    <div className="w-full flex m-auto  text-white  my-3 justify-end items-center gap-1">
+      {Number(page) > 1 && (
+        <Button asChild className="h-[32px]">
+          <Link
+            href={{
+              pathname: "/",
+              query: { ...(search ? { search } : {}), page: Number(page) - 1 },
+            }}
+          >
+            Prev
+          </Link>
+        </Button>
+      )}
+      {PaginationNumber?.map((elm) => (
+        <div className="flex gap-2">
           <Link
             href={{
               pathname: "/",
               query: { ...(search ? { search } : {}), page: elm },
             }}
-            className={`border p-2 hover:bg-blue-700 text-white mx-2 ${
+            className={`border px-2 py-1 hover:bg-blue-700 text-white text-sm rounded-sm ${
               Number(page) === elm ? "bg-red-500" : ""
             } `}
             key={elm}
           >
             {elm}
           </Link>
-        </>
+        </div>
       ))}
 
-      <div className="flex items-center gap-2 ">
-        ...of
-        <Link
-          href={{
-            pathname: "/",
-            query: { ...(search ? { search } : {}), page: totalPage },
-          }}
-          className={`border p-2 hover:bg-blue-700 text-white mx-2 ${
-            Number(page) === totalPage ? "bg-red-500" : ""
-          } `}
-        >
-          {totalPage}
-        </Link>{" "}
-      </div>
+      {Number(page) < totalPage && (
+        <Button asChild className="h-[32px]">
+          <Link
+            href={{
+              pathname: "/",
+              query: { ...(search ? { search } : {}), page: Number(page) + 1 },
+            }}
+          >
+            Next
+          </Link>
+        </Button>
+      )}
     </div>
   );
 };
