@@ -1,16 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Menu,
-  Search,
-  BookmarkPlus,
-  UserCircle2,
-  ChevronDown,
-} from "lucide-react";
-import Image from "next/image";
+import { Search } from "lucide-react";
 import { SearchData } from "@/types";
-import { useSelector, useDispatch } from "react-redux";
-import { searchMovies, searchState } from "../redux/searchSlice";
-import { RootState } from "../redux/store";
 import { useDebounce } from "use-debounce";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -20,11 +10,12 @@ const SearchBar = () => {
   const search = searchParams.get("search");
   const [text, setText] = useState(search);
   const [debounce] = useDebounce(text, 500);
-  const [searchResult, setSearchResult] = useState<SearchData[]>([]);
+  // const [searchResult, setSearchResult] = useState<SearchData[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
+
   const initialRender = useRef(true);
 
   useEffect(() => {
