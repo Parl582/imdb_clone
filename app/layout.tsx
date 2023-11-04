@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
 import ReduxProvider from "@/components/redux/ReduxProvider";
-import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +21,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <ReduxProvider>
           <Header />
-          <NextTopLoader showSpinner={false} />
           {children}
         </ReduxProvider>
       </body>
