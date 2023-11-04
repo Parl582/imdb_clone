@@ -8,21 +8,28 @@ import SharedCompo from "../SharedCompo";
 import CommentModal from "./CommentModal";
 import { useDispatch, useSelector } from "react-redux";
 import { RemoveFromFavList, addToFavList } from "../redux/favSlice";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { RootState } from "../redux/store";
 
 const MovieDetails = ({ data }: { data: MDetailsType }) => {
+
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
-  const [ratingValue, setRatingValue] = useState("0");
+  const [ratingValue, setRatingValue] = useState("");
+
+  // allData in favorite list
   const favListItem = useSelector((state: RootState) => state.favorite?.value);
 
+  // loop through the item which is in favorite list
   let alreadyInFavList = favListItem.some((elm) => elm.imdbID == data.imdbID);
 
+  // handle rating function
   const handleRating = (rate: string) => {
     setRatingValue(rate);
   };
 
+
+  // function for add to favorite
   const handleAddFav = () => {
     dispatch(
       addToFavList({
@@ -36,6 +43,7 @@ const MovieDetails = ({ data }: { data: MDetailsType }) => {
     );
   };
 
+  // handle user comment
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
   };
@@ -43,24 +51,25 @@ const MovieDetails = ({ data }: { data: MDetailsType }) => {
   return (
     <>
       <div className="bg-black min-h-[calc(100vh-60px)] text-white p-2 lg:px-20">
+        {/* header container  */}
         <div className="w-full flex justify-end ">
           <div className="flex items-center gap-5 py-3 flex-wrap">
-            <Link href={"#"} className="font-semibold">
+            <Link href={"/"} className="font-semibold">
               Cast & crew
             </Link>
-            <Link href={"#"} className="font-semibold">
+            <Link href={""} className="font-semibold">
               User reviews
             </Link>
-            <Link href={"#"} className="font-semibold">
+            <Link href={"/"} className="font-semibold">
               Trivia
             </Link>
-            <Link href={"#"} className="font-semibold">
+            <Link href={"/"} className="font-semibold">
               FAQ
             </Link>
-            <Link href={"#"} className="font-semibold">
+            <Link href={"/"} className="font-semibold">
               IMDbPro
             </Link>
-            <Link href={"#"} className="flex gap-1">
+            <Link href={"/"} className="flex gap-1">
               <Grip /> <span className="font-semibold">All Topic </span>
             </Link>
             <Share2 />
@@ -75,7 +84,6 @@ const MovieDetails = ({ data }: { data: MDetailsType }) => {
             </h1>
             <p className="text-sm text-slate-400 font-light py-2 flex gap-2">
               {data.Year}
-
               <span> R </span>
 
               <span> {data.Runtime} </span>
@@ -97,9 +105,14 @@ const MovieDetails = ({ data }: { data: MDetailsType }) => {
 
         <div className="flex items-center h-[400px]  gap-1">
           <div className=" w-[280px] h-full relative">
-            <Image src={data.Poster} fill alt={data.Title} />
+            <Image
+              src={data.Poster !== "N/A" ? data.Poster : "/noImage.png"}
+              fill
+              alt={data.Title}
+            />
           </div>
         </div>
+        {/* about section  */}
         <div className="w-full flex items-end flex-wrap">
           <div className="w-full lg:w-3/4">
             <h1 className="py-3  text-sm font-normal">{data.Genre}</h1>

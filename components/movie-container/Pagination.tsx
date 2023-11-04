@@ -39,15 +39,15 @@ const Pagination = ({ total, ItemPerPage, search, page }: Props) => {
           </Link>
         </Button>
       )}
-      {PaginationNumber?.map((elm,i) => (
-        <div className="flex gap-2" key={i} >
+      {PaginationNumber?.map((elm, i) => (
+        <div className="flex gap-2" key={i}>
           <Link
             href={{
               pathname: "/",
               query: { ...(search ? { search } : {}), page: elm },
             }}
             className={`border px-2 py-1 hover:bg-blue-700 text-white text-sm rounded-sm ${
-              Number(page) === elm ? "bg-red-500" : ""
+              Number(page) === elm ? "bg-yellow-500" : ""
             } `}
             key={elm}
           >
