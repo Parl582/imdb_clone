@@ -1,18 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import searchSlice from "./searchSlice";
+
 import favoriteSlice from "./favSlice";
 import storage from "redux-persist/lib/storage";
 
-import {
-  persistReducer,
-  persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
+import { persistReducer, persistStore } from "redux-persist";
 
 const persistConfig = {
   key: "root",
@@ -23,7 +14,6 @@ const persistedReducer = persistReducer(persistConfig, favoriteSlice);
 
 export const store = configureStore({
   reducer: {
-    search: searchSlice,
     favorite: persistedReducer,
   },
 });

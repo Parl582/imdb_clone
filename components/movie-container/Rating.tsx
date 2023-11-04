@@ -13,7 +13,7 @@ const Rating = ({ handleRating, rating }: props) => {
         let current = i + 1;
         return (
           <Star
-            size={20}
+            size={16}
             strokeWidth={3}
             key={i}
             values={rating}

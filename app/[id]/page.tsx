@@ -14,9 +14,10 @@ export async function generateMetadata({
   };
 }
 
+// get single movie details by its id
 const page = async ({ params }: { params: { id: string } }) => {
   const res = await fetch(
-    `https://www.omdbapi.com/?i=${params.id}&apikey=3bfe041`
+    `https://www.omdbapi.com/?i=${params.id}&apikey=${process.env.API_KEY}`
   );
   if (!res) {
     return <div className="text-white text-2xl"> Something Went wrong </div>;

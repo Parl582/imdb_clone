@@ -4,11 +4,12 @@ import MovieCard from "@/components/movie-container/MovieCard";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import Rating from "../movie-container/Rating";
+import CommentSection from "./CommentSection";
 
 const Favorite = () => {
-
-  const [showMore, setShowMore] = useState(true);
   const handleRating = () => {};
+
+  // get all user favorite movie from redux store
   const favoriteMovies = useSelector(
     (state: RootState) => state.favorite.value
   );
@@ -25,34 +26,17 @@ const Favorite = () => {
     <div className="w-full flex flex-wrap px-2 lg:px-20 md:px-11 py-7">
       {favoriteMovies?.map((elm) => (
         <div className="w-1/3 md:w-1/4 lg:w-1/6 p-2" key={elm.imdbID}>
+          {/* movie card  */}
           <MovieCard deleteBtn={true} {...elm} />
+          {/* user rating section  */}
           {elm.rating && (
-            <div className="text-blue-300 flex text-sm items-center gap-2">
-              <span className=" font-semibold pt-3 text-blue-400">Rating</span>
+            <div className="text-blue-300  text-xs">
+              <h1 className=" font-semibold pt-3 text-blue-400">Rating</h1>
               <Rating rating={elm.rating} handleRating={handleRating} />{" "}
             </div>
           )}
-
-          {elm.comments && (
-            <div className="text-white w-full ">
-              <h2 className="font-semibold pt-3 text-yellow-400 w-full">
-                Comments :
-              </h2>
-              <p className="text-zinc-300 text-xs w-full  break-words">
-                {showMore ? elm?.comments?.slice(0, 60) : elm?.comments}
-                {elm.comments.length > 30 ? (
-                  <span
-                    className="text-xs cursor-pointer text-blue-500 px-2"
-                    onClick={() => setShowMore((prev) => !prev)}
-                  >
-                    {showMore ? "...read more" : "hide"}
-                  </span>
-                ) : (
-                  ""
-                )}
-              </p>
-            </div>
-          )}
+          {/* user comment section  */}
+          {elm.comments && <CommentSection comments={elm.comments} />}
         </div>
       ))}
     </div>

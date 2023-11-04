@@ -29,10 +29,9 @@ const Allmovies = async ({
   if (!data.Search) {
     return (
       <>
-        {" "}
         <div className="w-full h-[80vh] flex items-center justify-center text-zinc-400 text-2xl md:text-4xl ">
           No Data found
-        </div>{" "}
+        </div>
       </>
     );
   }
